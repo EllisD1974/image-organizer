@@ -10,13 +10,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.8'   # <- adjust to your project version
+          python-version: "3.8"
 
       - name: Install dependencies
         run: |
@@ -29,9 +29,16 @@ jobs:
           pyinstaller image_organizer_main.spec
           echo "Build complete"
 
-      - name: Upload EXE artifact
+      - name: Install Inno Setup
+        run: |
+          choco install innosetup -y
+
+      - name: Build Installer (ISCC)
+        run: |
+          "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer.iss
+
+      - name: Upload Installer Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: image-organizer-exe
-          path: |
-            dist/
+          name: installer
+          path: installer_output/*.exe
