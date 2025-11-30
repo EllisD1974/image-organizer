@@ -15,7 +15,7 @@ class ImageSorter(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.settings = QSettings("MyCompany", "ImageSorterApp")
+        self.settings = QSettings("nel", "ImageSorterApp")
         self.category_root = self.settings.value("category_root", type=str)
 
         self.image_paths = []
