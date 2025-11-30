@@ -3,9 +3,9 @@
 
 a = Analysis(
     ['image_organizer_main.py'],
-    pathex=[],
+    pathex=["."],
     binaries=[],
-    datas=[],
+    datas=[('resources/icons', 'resources/icons')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -29,10 +29,11 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,
+    console=True,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon="resources/icons/image_organizer_main_icon.ico",
 )
