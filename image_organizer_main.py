@@ -254,6 +254,8 @@ class ImageSorter(QWidget):
         src = Path(self.image_paths[self.current_index])
 
         try:
+            if os.path.exists(dest_path / src.name):
+                raise FileExistsError(f"Destination already has: {dest_path / src.name}")
             shutil.move(str(src), str(dest_path / src.name))
         except Exception as e:
             QMessageBox.critical(self, "Error", str(e))
